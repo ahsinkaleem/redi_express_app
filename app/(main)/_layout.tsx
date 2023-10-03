@@ -1,6 +1,6 @@
-import Account from '@app/(user)/(main)/Account';
-import Card from '@app/(user)/(main)/Card';
-import Home from '@app/(user)/(main)/Home';
+import Account from '@app/(main)/Account';
+import Card from '@app/(main)/Card';
+import Home from '@app/(main)/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Colors from '@src/constants/Colors';
 import { getRespValue, hp } from '@utils/design/design';

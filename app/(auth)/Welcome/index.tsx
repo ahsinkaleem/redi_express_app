@@ -11,6 +11,7 @@ const Welcome = ({ navigation }: AuthProps) => {
   return (
     <Screen
       className={`bg-[${Colors.light.theme.yellow}]`}
+      
       topColor={Colors.light.theme.yellow}
     >
       <MotiView
@@ -18,12 +19,13 @@ const Welcome = ({ navigation }: AuthProps) => {
           opacity: 0,
           translateY: -100,
         }}
+     
         animate={{
           opacity: 1,
           translateY: 0,
         }}
       >
-        <View className="px-4 pt-8 pb-8">
+        <View className="px-4 pt-8 pb-8" >
           <Text
             style={{
               fontSize: getRespValue(45),

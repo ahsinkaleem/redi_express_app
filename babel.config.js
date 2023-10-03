@@ -21,7 +21,7 @@ module.exports = api => {
             '@actions': './store/actions',
             '@reducers': './store/reducers',
             '@types': './store/types',
-            '@screens': './src/screens',
+            '@app': './app',
             '@assets': './assets',
             '@styles': './styles',
             '@components': './src/components',
@@ -29,6 +29,7 @@ module.exports = api => {
             '@navigation': './src/navigation',
             '@layouts': './layouts',
             '@stable': './src/components/globals',
+            
           },
 
           extensions: ['.js', '.jsx', '.es', '.es6', '.mjs', '.ts', '.tsx'],
@@ -36,6 +37,7 @@ module.exports = api => {
       ],
       'nativewind/babel',
       'react-native-reanimated/plugin',
+      'expo-router/babel'
     ],
   };
 };

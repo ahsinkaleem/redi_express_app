@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 
-import NotFoundScreen from '@screens/NotFoundScreen';
+import NotFoundScreen from '@app/NotFoundScreen';
 import { RootStackParamList } from '../../types';
 import { userLinking } from './LinkingConfiguration';
 import Auth from './user/AuthStack';

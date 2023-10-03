@@ -47,7 +47,7 @@ const Step1_BasicDetails = ({ next }: MultiStepFormProps) => {
           duration: 500,
         }}
       >
-        <View className="px-4 pt-8 pb-8">
+        <View className="px-4 pt-8 pb-8 ">
           <Text
             style={{
               fontSize: getRespValue(45),
