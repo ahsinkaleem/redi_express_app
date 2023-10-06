@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import AppBar from '@src/components/user/AppBar';
-import React from 'react';
+
 import {
   ScrollView,
   StyleSheet,

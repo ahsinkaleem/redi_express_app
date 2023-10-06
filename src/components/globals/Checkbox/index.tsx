@@ -2,7 +2,7 @@
 import Colors from '@src/constants/Colors';
 import { getRespValue } from '@utils/design/design';
 import { Checkbox as CheckboxDef, ICheckboxProps } from 'native-base';
-import React from 'react';
+
 import { Text, View } from 'react-native';
 
 interface MyCheckboxProps extends ICheckboxProps {

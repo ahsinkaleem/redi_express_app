@@ -3,15 +3,15 @@ import MotiView from '@src/components/globals/MotiView';
 import Screen from '@src/components/globals/Screen';
 import Colors from '@src/constants/Colors';
 import { getRespValue } from '@utils/design/design';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { AuthProps } from 'types';
+import { useRouter } from 'expo-router';
+// import React from 'react';
+import { Text, View } from 'react-native';
 
-const Welcome = ({ navigation }: AuthProps) => {
+const Welcome = () => {
+  const router = useRouter();
   return (
     <Screen
       className={`bg-[${Colors.light.theme.yellow}]`}
-      
       topColor={Colors.light.theme.yellow}
     >
       <MotiView
@@ -19,13 +19,12 @@ const Welcome = ({ navigation }: AuthProps) => {
           opacity: 0,
           translateY: -100,
         }}
-     
         animate={{
           opacity: 1,
           translateY: 0,
         }}
       >
-        <View className="px-4 pt-8 pb-8" >
+        <View className="px-4 pt-8 pb-8">
           <Text
             style={{
               fontSize: getRespValue(45),
@@ -62,10 +61,10 @@ const Welcome = ({ navigation }: AuthProps) => {
           }}
           className="bg-none h-full flex-1 w-full flex-col items-end justify-end"
         >
-          <Button onPress={() => navigation.navigate('Signup')}>
+          <Button onPress={() => router.push('/(auth)/signup')}>
             Create my account
           </Button>
-          <Button light onPress={() => navigation.navigate('Signin')}>
+          <Button light onPress={() => router.push('/(auth)/signin')}>
             Login
           </Button>
         </MotiView>
@@ -75,5 +74,3 @@ const Welcome = ({ navigation }: AuthProps) => {
 };
 
 export default Welcome;
-
-const styles = StyleSheet.create({});

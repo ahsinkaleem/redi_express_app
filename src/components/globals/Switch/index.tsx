@@ -3,7 +3,7 @@
 import Colors from '@src/constants/Colors';
 import { getRespValue } from '@utils/design/design';
 import PropTypes from 'prop-types';
-import * as React from 'react';
+
 import {
   Animated,
   Easing,
