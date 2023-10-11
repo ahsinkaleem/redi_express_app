@@ -1,8 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import {
+  SafeAreaView,
+  ScrollView,
+  View as ViewDef,
+} from '@src/components/libraries';
 import AppBar from '@src/components/user/AppBar';
-
-import { ScrollView, View as ViewDef, ViewProps } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ViewProps } from 'react-native';
 
 interface Props extends ViewProps {
   scroll?: boolean;

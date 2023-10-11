@@ -51,6 +51,7 @@
         "namedComponents": "arrow-function"
       }
     ],
-    "react/no-unstable-nested-components": 0
+    "react/no-unstable-nested-components": 0,
+    "react/jsx-props-no-spreading": "off"
   }
 }

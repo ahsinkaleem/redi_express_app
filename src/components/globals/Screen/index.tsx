@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import {
+  SafeAreaView,
   ScrollView,
-  StyleSheet,
   View as ViewDef,
-  ViewProps,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+} from '@src/components/libraries';
+import { ViewProps } from 'react-native';
 
 interface Props extends ViewProps {
   scroll?: boolean;
@@ -58,5 +57,3 @@ Screen.defaultProps = {
 };
 
 export default Screen;
-
-const styles = StyleSheet.create({});
