@@ -1,12 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { PersistGate } from 'redux-persist/integration/react';
-
 import store from '@store/store';
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
+import 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 // import { LogBox } from 'react-native';
 
 // LogBox.ignoreLogs(['Warning: ...']); // Hide warnings

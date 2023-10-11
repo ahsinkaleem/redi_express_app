@@ -8,14 +8,11 @@ import { MultiStepFormProps } from '@src/hooks/useMultiStepForm';
 import { animationConfig } from '@utils/animation/animation';
 import { getRespValue } from '@utils/design/design';
 import { MotiView } from 'moti';
-import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 // eslint-disable-next-line camelcase
 const Step2_OTP = ({ back }: MultiStepFormProps) => {
-  const [toggleIsOn, setToggle] = useState(false);
-  const [checkIsOn, setCheck] = useState('off');
-
   return (
     <Screen
       className={`bg-[${Colors.light.theme.yellow}]`}
@@ -89,5 +86,3 @@ const Step2_OTP = ({ back }: MultiStepFormProps) => {
 };
 
 export default Step2_OTP;
-
-const styles = StyleSheet.create({});

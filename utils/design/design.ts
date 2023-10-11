@@ -1,11 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import { Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  // eslint-disable-next-line prettier/prettier
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen';
 
 export const getRespValue = (percentage: number) => {

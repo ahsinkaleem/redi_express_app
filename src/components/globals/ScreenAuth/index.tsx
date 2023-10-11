@@ -1,12 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import AppBar from '@src/components/user/AppBar';
 
-import {
-  ScrollView,
-  StyleSheet,
-  View as ViewDef,
-  ViewProps,
-} from 'react-native';
+import { ScrollView, View as ViewDef, ViewProps } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props extends ViewProps {
@@ -38,5 +33,3 @@ ScreenAuth.defaultProps = {
 };
 
 export default ScreenAuth;
-
-const styles = StyleSheet.create({});

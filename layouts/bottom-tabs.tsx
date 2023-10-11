@@ -1,12 +1,13 @@
-import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { withLayoutContext } from "expo-router";
-import { RootTabParamList } from 'types';
-  
-  
-  const MainStack = createBottomTabNavigator<RootTabParamList>();
-  
-  export const BottomTabs = withLayoutContext<
+import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import { withLayoutContext } from 'expo-router';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// const MainStack = createBottomTabNavigator<RootTabParamList>();
+
+// eslint-disable-next-line import/prefer-default-export
+export const BottomTabs = withLayoutContext<
   BottomTabNavigationOptions,
-    typeof MainStack
-  >(MainStack);
-  
+  never,
+  never,
+  never
+>;

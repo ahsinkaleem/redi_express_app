@@ -3,7 +3,7 @@
 import Colors from '@src/constants/Colors';
 import { getRespValue } from '@utils/design/design';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import {
   Animated,
   Easing,
@@ -32,7 +32,7 @@ const Toggle = (props: Props) => {
     outputRange: [0, 16],
   });
 
-  const { isOn, onColor, offColor, style, onToggle, labelStyle, label } = props;
+  const { isOn, style, onToggle, labelStyle, label } = props;
 
   // const color = isOn ? onColor : offColor;
 

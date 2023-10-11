@@ -13,8 +13,8 @@ import { MultiStepFormProps } from '@src/hooks/useMultiStepForm';
 import { animationConfig } from '@utils/animation/animation';
 import { getRespValue } from '@utils/design/design';
 import { MotiView } from 'moti';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Text, View } from 'react-native';
 
 // eslint-disable-next-line camelcase
 const Step1_BasicDetails = ({ next }: MultiStepFormProps) => {
@@ -109,5 +109,3 @@ const Step1_BasicDetails = ({ next }: MultiStepFormProps) => {
 };
 
 export default Step1_BasicDetails;
-
-const styles = StyleSheet.create({});

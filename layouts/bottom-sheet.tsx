@@ -1,13 +1,16 @@
 import {
-  createBottomSheetNavigator,
   BottomSheetNavigationOptions,
-} from "@th3rdwave/react-navigation-bottom-sheet";
+  createBottomSheetNavigator,
+} from '@th3rdwave/react-navigation-bottom-sheet';
 
-import { withLayoutContext } from "expo-router";
+import { withLayoutContext } from 'expo-router';
 
 const { Navigator } = createBottomSheetNavigator();
 
+// eslint-disable-next-line import/prefer-default-export
 export const BottomSheet = withLayoutContext<
   BottomSheetNavigationOptions,
-  typeof Navigator
+  typeof Navigator,
+  never,
+  never
 >(Navigator);
