@@ -1,7 +1,8 @@
+import React, { forwardRef } from 'react';
 import { ScrollView as Lib, ScrollViewProps } from 'react-native';
 
-const index = (props: ScrollViewProps) => {
-  return <Lib {...props} />;
-};
+const ScrollView = forwardRef((props: ScrollViewProps, ref: React.Ref<Lib>) => {
+  return <Lib {...props} ref={ref} />;
+});
 
-export default index;
+export default ScrollView;

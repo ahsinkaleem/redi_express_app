@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react/forbid-prop-types */
+import { StyleSheet, View } from '@src/components/libraries';
 import Colors from '@src/constants/Colors';
 import { getRespValue } from '@utils/design/design';
 import PropTypes from 'prop-types';
@@ -8,11 +9,9 @@ import {
   Animated,
   Easing,
   GestureResponderEvent,
-  StyleSheet,
   SwitchProps,
   Text,
   TouchableOpacity,
-  View,
 } from 'react-native';
 
 interface Props extends SwitchProps {
