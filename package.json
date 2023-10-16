@@ -9,6 +9,12 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "postinstall": "patch-package",
+    "androidProduction": "eas build --platform android --profile production",
+    "iosProduction": "eas build --platform ios --profile production",
+    "androidDev": "eas build --platform android --profile development",
+    "iosDev": "eas build --platform ios --profile development",
+    "iosAuto": "eas build --platform ios --auto-submit",
+    "iosSimulatior": "eas build --platform ios --profile development-simulator",
     "prepare": "husky install"
   },
   "jest": {
