@@ -5,6 +5,6 @@ import { Redirect } from 'expo-router';
 
 const Index = () => {
   console.log('Redirecting to /feeds');
-  return <Redirect href="/welcome" />;
+  return <Redirect href="/Welcome" />;
 };
 export default Index;

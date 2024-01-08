@@ -61,10 +61,10 @@ const Welcome = () => {
           }}
           className="bg-none h-full flex-1 w-full flex-col items-end justify-end"
         >
-          <Button onPress={() => router.push('/(auth)/signup')}>
+          <Button onPress={() => router.push('/(auth)/Signup')}>
             Create my account
           </Button>
-          <Button light onPress={() => router.push('/(auth)/signin')}>
+          <Button light onPress={() => router.push('/(auth)/Signin')}>
             Login
           </Button>
         </MotiView>
