@@ -1,16 +1,13 @@
-import Button from '@src/components/globals/Button';
 import { useRouter } from 'expo-router';
 
-import { Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 
 const Signin = () => {
   const router = useRouter();
   return (
     <View>
       <Text>Signin</Text>
-      <Button light onPress={() => router.push('(main)/home')}>
-        Login
-      </Button>
+      <Button onPress={() => router.push('(main)/home')} title="signin" />
     </View>
   );
 };
