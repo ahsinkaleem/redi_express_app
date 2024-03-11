@@ -8,7 +8,7 @@
     "scheme": "template",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/adaptive-icon.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -27,7 +27,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bilal3981a.expoTemplate"
+      "package": "com.anemoia.expotemplate"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

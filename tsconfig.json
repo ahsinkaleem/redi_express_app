@@ -6,20 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["src/*"],
-      "@utils/*": ["utils/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@store/*": ["store/*"],
-      "@actions/*": ["store/actions/*"],
-      "@reducers/*": ["store/reducers/*"],
-      "@types/*": ["store/types/*"],
-      "@screens/*": ["src/screens/*"],
-      "@assets/*": ["assets/*"],
-      "@styles/*": ["styles/*"],
-      "@components/*": ["src/components/*"],
-      "@constants/*": ["src/constants/*"],
-      "@routes/*": ["src/navigation/*"],
-      "@layouts/*": ["layouts/*"],
-      "@stable/*": ["src/components/globals/*"],
+     
     },
     
   },

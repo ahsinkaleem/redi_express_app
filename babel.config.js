@@ -15,21 +15,6 @@ module.exports = api => {
           root: ['.'],
           alias: {
             '@src': './src',
-            '@utils': './utils',
-            '@hooks': './src/hooks',
-            '@store': './store',
-            '@actions': './store/actions',
-            '@reducers': './store/reducers',
-            '@types': './store/types',
-            '@app': './app',
-            '@assets': './assets',
-            '@styles': './styles',
-            '@components': './src/components',
-            '@constants': './src/constants',
-            '@navigation': './src/navigation',
-            '@layouts': './layouts',
-            '@stable': './src/components/globals',
-            
           },
 
           extensions: ['.js', '.jsx', '.es', '.es6', '.mjs', '.ts', '.tsx'],
