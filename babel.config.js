@@ -15,6 +15,9 @@ module.exports = api => {
           root: ['.'],
           alias: {
             '@src': './src',
+            '@store': './store',
+            '@utils': './utils',
+            '@assets': './assets',
           },
 
           extensions: ['.js', '.jsx', '.es', '.es6', '.mjs', '.ts', '.tsx'],
@@ -22,7 +25,6 @@ module.exports = api => {
       ],
       'nativewind/babel',
       'react-native-reanimated/plugin',
-      'expo-router/babel'
     ],
   };
 };

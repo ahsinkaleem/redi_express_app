@@ -4,7 +4,6 @@ import {
   ScrollView,
   View as ViewDef,
 } from '@src/components/libraries';
-import AppBar from '@src/components/user/AppBar';
 import { ViewProps } from 'react-native';
 
 interface Props extends ViewProps {
@@ -25,7 +24,7 @@ const ScreenAuth = (props: Props) => {
 
   return (
     <SafeAreaView edges={['top']} className={className}>
-      <AppBar />
+      {/* <AppBar /> */}
       {children}
     </SafeAreaView>
   );

@@ -4,6 +4,6 @@ import { Redirect } from 'expo-router';
 // LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 const Index = () => {
-  return <Redirect href="/Welcome" />;
+  return <Redirect href="/welcome" />;
 };
 export default Index;

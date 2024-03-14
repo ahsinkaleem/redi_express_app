@@ -16,7 +16,6 @@ const Layout = () => {
     >
       <MaterialBottomTabs.Screen name="home" />
       <MaterialBottomTabs.Screen name="account" />
-      <MaterialBottomTabs.Screen name="card" />
     </MaterialBottomTabs>
   );
 };

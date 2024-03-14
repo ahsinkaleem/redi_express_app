@@ -1,17 +1,32 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@store/store';
 
 // Type for our state
 export interface UserState {
   accessToken: string;
-  data: any;
+  data: {
+    id: string;
+    email: string;
+    name: string;
+    phone: string;
+    role: string;
+    status: string;
+  };
   authModal: boolean;
 }
 
 // Initial state
 const initialState: UserState = {
   accessToken: '',
-  data: {},
+  data: {
+    id: '',
+    email: '',
+    name: '',
+    phone: '',
+    role: '',
+    status: '',
+  },
   authModal: false,
 };
 
@@ -21,24 +36,13 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     // Action to set the authentication status
-    setAuthState(state, action) {
-      state.accessToken = action.payload;
-    },
-    setLogout(state) {
-      state.accessToken = '';
-      state.data = {};
-    },
-    setShowAuthModal(state) {
-      state.authModal = true;
-    },
-    setHideAuthModal(state) {
-      state.authModal = false;
+    setData(state, action) {
+      state.data = action.payload;
     },
   },
 });
 
-export const { setAuthState, setLogout, setHideAuthModal, setShowAuthModal } =
-  userSlice.actions;
+export const { setData } = userSlice.actions;
 
 export const selectUserState = (state: RootState) => state.user;
 

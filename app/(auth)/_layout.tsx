@@ -3,11 +3,11 @@ import { Stack } from 'expo-router';
 const Layout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="welcome" />
-      <Stack.Screen name="signin" />
-      <Stack.Screen name="signup" />
-      <Stack.Screen name="forgot" />
+      <Stack.Screen name="welcome/index" />
+      <Stack.Screen name="signin/index" />
+      <Stack.Screen name="signup/index" />
     </Stack>
   );
 };
+
 export default Layout;

@@ -1,11 +1,19 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+} from 'redux-persist';
+import reduxStorage from './mmkv/mmkvStorage';
 import { rootReducer } from './rootReducer';
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage,
+  storage: reduxStorage,
   whitelist: ['user'],
 };
 
@@ -14,17 +22,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
-  // middleware: getDefaultMiddleware =>
-  //   getDefaultMiddleware({}).concat([
-  //     authApi.middleware,
-  //     smartphoneApi.middleware,
-  //     tabletApi.middleware,
-  //     smartwatchApi.middleware,
-  //     brandApi.middleware,
-  //     reviewApi.middleware,
-  //     feedApi.middleware,
-  //   ]),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export default store;
