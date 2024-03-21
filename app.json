@@ -12,6 +12,9 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
+    "experiments": {
+      "typedRoutes": true
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

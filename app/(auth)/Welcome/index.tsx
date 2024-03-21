@@ -1,10 +1,12 @@
 import { ms } from '@utils/design/design';
-import { useRouter } from 'expo-router';
+import { Redirect, useRouter } from 'expo-router';
 import { Button, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Welcome = () => {
   const router = useRouter();
+
+  if (true) return <Redirect href="/signup/" />;
 
   return (
     <SafeAreaView>
@@ -16,7 +18,7 @@ const Welcome = () => {
         Welcome
       </Text>
 
-      <Button onPress={() => router.push('signin')} title="signin" />
+      <Button onPress={() => router.push('/signin/')} title="signin" />
     </SafeAreaView>
   );
 };
