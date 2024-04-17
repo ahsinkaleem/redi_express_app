@@ -13,6 +13,9 @@ const Layout = () => {
           // tabBarLabelStyle: styles.tabBarLabelStyle,
         }
       }
+      shifting
+      sceneAnimationEnabled
+      sceneAnimationType="shifting"
     >
       <MaterialBottomTabs.Screen name="home" />
       <MaterialBottomTabs.Screen name="account" />

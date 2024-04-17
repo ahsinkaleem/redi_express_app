@@ -1,11 +1,11 @@
 import { useAppSelector } from '@src/hooks/useReduxHooks';
-import { Redirect } from 'expo-router';
-
-// LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-// LogBox.ignoreAllLogs(); // Ignore all log notifications
+import { Redirect, useRootNavigationState } from 'expo-router';
 
 const Index = () => {
   const user = useAppSelector(state => state.user);
+  const rootNavigationState = useRootNavigationState();
+
+  if (!rootNavigationState?.key) return null;
 
   if (user.data.email) {
     return <Redirect href="/home/" />;

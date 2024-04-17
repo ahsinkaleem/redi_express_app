@@ -18,6 +18,8 @@ module.exports = api => {
             '@store': './store',
             '@utils': './utils',
             '@assets': './assets',
+            '@hooks': './src/hooks',
+            '@/': './',
           },
 
           extensions: ['.js', '.jsx', '.es', '.es6', '.mjs', '.ts', '.tsx'],
