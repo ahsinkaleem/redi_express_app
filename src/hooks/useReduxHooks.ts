@@ -1,4 +1,4 @@
-import { RootState } from '@store/store';
+import { RootState } from '@store/index';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { AnyAction } from 'redux';

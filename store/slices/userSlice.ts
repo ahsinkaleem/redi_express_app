@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '@store/store';
+import { RootState } from '@store/index';
 
 // Type for our state
 export interface UserState {

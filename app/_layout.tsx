@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/extensions
 import SpaceMonoFont from '@assets/fonts/SpaceMono-Regular.ttf';
-import store from '@store/store';
+import store from '@store/index';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';

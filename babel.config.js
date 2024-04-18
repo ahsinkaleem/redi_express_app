@@ -15,11 +15,23 @@ module.exports = api => {
           root: ['.'],
           alias: {
             '@src': './src',
-            '@store': './store',
             '@utils': './utils',
             '@assets': './assets',
             '@hooks': './src/hooks',
             '@/': './',
+            '@components': './src/components',
+            '@globals': './src/components/globals',
+            '@steps': './src/components/steps',
+            '@commons': './src/components/commons',
+            '@lib': './src/libraries',
+
+
+            // STORE
+            '@store': './store',
+            '@reducers': './store/reducers',
+            '@api': './store/api',
+            '@types': './store/types',
+            '@selectors': './store/selectors',
           },
 
           extensions: ['.js', '.jsx', '.es', '.es6', '.mjs', '.ts', '.tsx'],

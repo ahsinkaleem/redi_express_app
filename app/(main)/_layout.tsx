@@ -1,7 +1,13 @@
+import { useAppSelector } from '@src/hooks/useReduxHooks';
+import { Redirect } from 'expo-router';
 import { MaterialBottomTabs } from '../../layouts/material-bottom-tabs';
 // Icons
 // const MainStack = createBottomTabNavigator<RootTabParamList>();
 const Layout = () => {
+  const user = useAppSelector(state => state.user);
+
+  if (!user?.data?.email) return <Redirect href="/(auth)/welcome" />;
+
   return (
     <MaterialBottomTabs
       initialRouteName="home"
