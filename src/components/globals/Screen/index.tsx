@@ -10,8 +10,15 @@ interface Props extends ViewProps {
 }
 
 const Screen = (props: Props) => {
-  const { style, topColor, bottomColor, scroll, className, children, ...rest } =
-    props;
+  const {
+    style,
+    topColor = '#000',
+    bottomColor = '#000',
+    scroll = false,
+    className,
+    children,
+    ...rest
+  } = props;
 
   if (scroll)
     return (
@@ -44,12 +51,6 @@ const Screen = (props: Props) => {
       </SafeAreaView>
     </>
   );
-};
-
-Screen.defaultProps = {
-  scroll: false,
-  topColor: '#000',
-  bottomColor: '#000',
 };
 
 export default Screen;

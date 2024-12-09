@@ -8,7 +8,7 @@ const Index = () => {
   if (!rootNavigationState?.key) return null;
 
   if (user.data.email) {
-    return <Redirect href="/home/" />;
+    return <Redirect href="/(main)/home" />;
   }
   return <Redirect href="/(auth)/welcome" />;
 };

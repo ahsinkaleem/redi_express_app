@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
+    "newArchEnabled": true,
     "scheme": "template",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -37,7 +38,8 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "expo-asset"
     ],
     "extra": {
       "router": {

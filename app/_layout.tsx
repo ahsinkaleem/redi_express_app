@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import 'react-native-gesture-handler';
 import { DefaultTheme, PaperProvider } from 'react-native-paper';
+import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';

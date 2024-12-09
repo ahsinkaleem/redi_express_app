@@ -11,7 +11,7 @@ interface Props extends ViewProps {
 }
 
 const ScreenAuth = (props: Props) => {
-  const { scroll, className, children, ...rest } = props;
+  const { scroll = false, className, children, ...rest } = props;
 
   if (scroll)
     return (
@@ -28,10 +28,6 @@ const ScreenAuth = (props: Props) => {
       {children}
     </SafeAreaView>
   );
-};
-
-ScreenAuth.defaultProps = {
-  scroll: false,
 };
 
 export default ScreenAuth;
