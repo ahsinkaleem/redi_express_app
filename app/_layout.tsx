@@ -6,18 +6,16 @@ import { Slot, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { DefaultTheme, PaperProvider } from 'react-native-paper';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import '../global.css';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
 const persistor = persistStore(store);
@@ -60,23 +58,25 @@ const ReduxWrapper = () => {
 
 const RootLayout = () => {
   return (
-    <SafeAreaProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <PaperProvider
-            theme={{
-              ...DefaultTheme,
-              colors: {
-                ...DefaultTheme.colors,
-                secondaryContainer: 'transparent',
-              },
-            }}
-          >
-            <ReduxWrapper />
-          </PaperProvider>
-        </PersistGate>
-      </Provider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <PaperProvider
+              theme={{
+                ...DefaultTheme,
+                colors: {
+                  ...DefaultTheme.colors,
+                  secondaryContainer: 'transparent',
+                },
+              }}
+            >
+              <ReduxWrapper />
+            </PaperProvider>
+          </PersistGate>
+        </Provider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
 

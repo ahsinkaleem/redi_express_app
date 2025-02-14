@@ -1,8 +1,14 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.organizeImports": "explicit",
+    "editor.codeActionsOnSave[source.fixAll]": "explicit"
   },
   "editor.formatOnSave": false,
-  "eslint.validate": ["javascript"]
+  "eslint.validate": [
+    "javascript"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "yaml.format.singleQuote": true,
 }

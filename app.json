@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-template",
-    "slug": "expo-template",
+    "name": "redi_express_app",
+    "slug": "rediexpressapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -27,6 +27,7 @@
       "bundleIdentifier": "com.bilal3981a.expoTemplate"
     },
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -46,7 +47,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "661c7b8d-41bf-43e5-be1c-a524ae1badd9"
+        "projectId": "e340abe1-1992-4299-80a1-0366c3b4b92d"
       }
     }
   }
