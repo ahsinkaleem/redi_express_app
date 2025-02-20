@@ -33,16 +33,20 @@ const Index = () => {
     event: { nativeEvent: { key: string } },
     index: number,
   ) => {
-    if (event.nativeEvent.key === 'Backspace' && index > 0 && !otp[index]) {
+    if (event.nativeEvent.key === 'Backspace') {
       const newOtp = [...otp];
-      newOtp[index - 1] = '';
+      if (otp[index]) {
+        newOtp[index] = '';
+      } else if (index > 0) {
+        newOtp[index - 1] = '';
+        inputRefs.current[index - 1].focus();
+      }
       setOtp(newOtp);
-      inputRefs.current[index - 1].focus();
     }
   };
   return (
-    <View>
-      <Text className="font-medium" style={styles.heading}>
+    <View className="bg-white dark:bg-black flex-1">
+      <Text className="font-medium dark:text-white" style={styles.heading}>
         OTP Verification
       </Text>
       <Text className="text-customGray font-bold" style={styles.subtext}>
@@ -56,8 +60,8 @@ const Index = () => {
             ref={ref => {
               inputRefs.current[index] = ref as TextInput;
             }}
-            className="text-center"
-            style={[styles.otpBox]}
+            className="text-center dark:text-white"
+            style={[styles.otpBox, digit ? styles.filledOtpBox : null]}
             keyboardType="numeric"
             maxLength={1}
             value={digit}
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.customBlue,
     fontSize: 18,
-    marginHorizontal: hs(12),
+    marginHorizontal: hs(10),
   },
   otpcontainer: {
     marginTop: vs(50),
@@ -124,5 +128,9 @@ const styles = StyleSheet.create({
   bottomtext: {
     marginTop: vs(10),
     marginBottom: vs(100),
+  },
+  filledOtpBox: {
+    borderColor: Colors.customeFilled,
+    borderWidth: 2,
   },
 });

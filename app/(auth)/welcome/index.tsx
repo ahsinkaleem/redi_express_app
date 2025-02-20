@@ -93,7 +93,7 @@ const Welcome = () => {
   }, [currentIndex]);
 
   return (
-    <View className="flex-1  bg-white dark:bg-black items-center">
+    <View className="flex-1  bg-white dark:bg-customBlack items-center">
       {/* FlashList for onboarding slides */}
       <FlashList
         style={styles.flash}

@@ -24,8 +24,8 @@ const Index = () => {
     Alert.alert('Password changed', `New password: ${values.newPassword}`);
   };
   return (
-    <View>
-      <Text className="font-medium" style={styles.heading}>
+    <View className="dark:bg-black bg-white flex-1">
+      <Text className="font-medium dark:text-white" style={styles.heading}>
         New Password
       </Text>
       <Text className="text-customGray" style={styles.subtext}>

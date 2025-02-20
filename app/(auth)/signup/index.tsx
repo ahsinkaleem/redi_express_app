@@ -167,6 +167,7 @@ const Index = () => {
                     name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
                     size={24}
                     color="black"
+                    className="dark:color-white "
                   />
                 </TouchableOpacity>
               </View>

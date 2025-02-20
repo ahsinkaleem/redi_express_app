@@ -157,7 +157,7 @@ const Index = () => {
       <View className="items-center">
         <TouchableOpacity
           style={styles.loginbt}
-          onPress={() => router.push('/(auth)/signin')}
+          onPress={() => router.push('/(main)/dashboard')}
           className="bg-customBlue items-center text-center justify-center"
         >
           <Text className="text-white dark:text-white font-bold">Log in</Text>
