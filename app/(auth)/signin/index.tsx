@@ -13,6 +13,7 @@ import TouchableOpacity from '../../../src/components/libraries/TouchableOpacity
 import { hs, ms, vs } from '../../../utils/design/design';
 
 const Index = () => {
+  // const [login, { isLoading, isSuccess }] = useLoginMutation();
   interface FormValues {
     email: string;
     password: string;
@@ -32,8 +33,15 @@ const Index = () => {
     ),
   });
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     console.log(values);
+    router.push('/(main)/dashboard/home');
+    // try {
+    //   const responce = await login(values).unwrap();
+    //   console.log(responce);
+    // } catch (err: unknown) {
+    //   Alert.alert('Error Signup failed!');
+    // }
   };
   const [passwordVisible, setpasswordVisible] = useState(true);
   return (
@@ -151,17 +159,19 @@ const Index = () => {
                 </Text>
               </TouchableOpacity>
             </View>
+            <TouchableOpacity
+              style={styles.loginbt}
+              className="bg-customBlue items-center text-center justify-center self-center"
+              onPress={() => onSubmit(values)}
+            >
+              <Text className="text-white dark:text-white font-bold">
+                Log in
+              </Text>
+            </TouchableOpacity>
           </>
         )}
       </Formik>
       <View className="items-center">
-        <TouchableOpacity
-          style={styles.loginbt}
-          onPress={() => router.push('/(main)/dashboard')}
-          className="bg-customBlue items-center text-center justify-center"
-        >
-          <Text className="text-white dark:text-white font-bold">Log in</Text>
-        </TouchableOpacity>
         <View className="flex-row justify-center">
           <Text className="text-customGray">Don't have an account?</Text>
           <TouchableOpacity onPress={() => router.push('/(auth)/signup')}>

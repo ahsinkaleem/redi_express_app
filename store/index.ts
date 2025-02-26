@@ -8,7 +8,8 @@ import {
   REHYDRATE,
   persistReducer,
 } from 'redux-persist';
-import { apiSlice } from './api/user';
+import { dummyApi } from './api/dummy';
+import { authsclice } from './api/user';
 import reduxStorage from './mmkv/mmkvStorage';
 import { rootReducer } from './rootReducer';
 
@@ -21,17 +22,14 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    presisted: persistedReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-  },
+  reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(apiSlice.middleware),
+    }).concat([authsclice.middleware, dummyApi.middleware]),
 });
 
 export default store;

@@ -2,7 +2,7 @@
 import { FlashList } from '@shopify/flash-list';
 import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, Image, StyleSheet, View } from 'react-native';
 import Colors from '../../../assets/CustomeColors/colors';
 import onboardin1 from '../../../assets/onboarding/onboarding1.png';
 import onboardin2 from '../../../assets/onboarding/onboarding2.png';
@@ -42,10 +42,22 @@ const onboardingData: OnboardingItem[] = [
 ];
 
 const Welcome = () => {
+  const animation = useRef(new Animated.Value(0)).current;
   const [currentIndex, setCurrentIndex] = useState(0);
   const flashListRef = useRef<FlashList<OnboardingItem> | null>(null);
   const router = useRouter();
-
+  const startAnimation = (position: number) => {
+    Animated.timing(animation, {
+      toValue: position,
+      useNativeDriver: true,
+      duration: 1000,
+    }).start();
+  };
+  if (currentIndex === onboardingData.length - 1) {
+    startAnimation(1);
+  } else {
+    startAnimation(0);
+  }
   // Sync currentIndex with FlashList scroll position
   const handleIndexChanged = (event: {
     nativeEvent: { contentOffset: { x: any } };
@@ -147,7 +159,21 @@ const Welcome = () => {
 
       {/* Signup Button and Text */}
       {currentIndex === onboardingData.length - 1 && (
-        <View style={styles.bottonsection}>
+        <Animated.View
+          style={[
+            styles.bottonsection,
+            {
+              transform: [
+                {
+                  translateY: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -60],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
           <TouchableOpacity
             className="bg-customBlue items-center text-center justify-center"
             onPress={() => router.push('/signup')}
@@ -163,7 +189,7 @@ const Welcome = () => {
               <Text className="text-customBlue font-bold">Sign in</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </Animated.View>
       )}
     </View>
   );
@@ -234,8 +260,6 @@ const styles = StyleSheet.create({
   bottonsection: {
     position: 'absolute',
     bottom: 0,
-
-    marginBottom: vs(40),
   },
   bottomtext: {
     marginTop: vs(5),

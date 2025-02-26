@@ -1,16 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const apiSlice = createApi({
+export const authsclice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.1.20:4500/api/v1' }),
   endpoints: builder => ({
     signup: builder.mutation({
-      query: creadiantials => ({
+      query: creadentials => ({
         url: '/register',
-        method: 'Post',
-        body: creadiantials,
+        method: 'POST',
+        body: creadentials,
+      }),
+    }),
+    login: builder.mutation({
+      query: creadentials => ({
+        url: '/login',
+        method: 'POST',
+        body: creadentials,
       }),
     }),
   }),
 });
-export const { useSignupMutation } = apiSlice;
+export const { useSignupMutation, useLoginMutation } = authsclice;

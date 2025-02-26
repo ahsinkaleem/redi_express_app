@@ -10,6 +10,12 @@ import Transfer from 'assets/images/transfer.svg';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  FadeIn,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { hs, ms, vs } from '../../../utils/design/design';
 
 type ListItem = {
@@ -18,7 +24,24 @@ type ListItem = {
   date: string;
   amount: string;
 };
+
 const Wallet = () => {
+  const flip = useSharedValue(180);
+  const frontside = useAnimatedStyle(() => {
+    return {
+      transform: [{ perspective: 1000 }, { rotateX: `${flip.value}deg` }],
+      opacity: flip.value < 90 ? 1 : 0,
+    };
+  });
+  const backside = useAnimatedStyle(() => {
+    return {
+      transform: [{ perspective: 1000 }, { rotateX: `${flip.value + 180}deg` }],
+      opacity: flip.value >= 90 ? 1 : 0,
+    };
+  });
+  const handelflip = () => {
+    flip.value = withSpring(flip.value < 10 ? 180 : 0);
+  };
   const router = useRouter();
   const [amountVisible, setamountVisible] = useState(true);
 
@@ -67,7 +90,10 @@ const Wallet = () => {
     </View>
   );
   return (
-    <View className="flex-1 bg-white dark:bg-customBlack">
+    <Animated.View
+      className="flex-1 bg-white dark:bg-customBlack"
+      entering={FadeIn.duration(1000)}
+    >
       <View className="flex-row" style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
           <Back style={styles.image} />
@@ -113,17 +139,19 @@ const Wallet = () => {
           />
         </TouchableOpacity>
       </View>
-      <View
-        style={styles.middelcard}
+      <Animated.View
+        style={[styles.middelcard, [backside]]}
         className="items-center bg-customlightGray dark:bg-customdarkCard"
       >
         <View>
-          <Text
-            className="font-bold dark:text-white"
-            style={styles.midelheader}
-          >
-            Top Up
-          </Text>
+          <TouchableOpacity onPress={handelflip}>
+            <Text
+              className="font-bold dark:text-white"
+              style={styles.midelheader}
+            >
+              Top Up
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <View className="flex-row ">
@@ -141,7 +169,36 @@ const Wallet = () => {
             <Text className="dark:text-white">Card</Text>
           </View>
         </View>
-      </View>
+      </Animated.View>
+      <Animated.View
+        style={[styles.backmiddelcard, [frontside]]}
+        className="items-center bg-customlightGray dark:bg-customdarkCard"
+      >
+        <TouchableOpacity onPress={handelflip}>
+          <Text
+            className="font-bold dark:text-white"
+            style={styles.midelheader}
+          >
+            Top Up
+          </Text>
+        </TouchableOpacity>
+
+        <View className="flex-row ">
+          <View className="items-center">
+            {/* <Image source={bank} style={styles.logos} /> */}
+            <Bank />
+            <Text className="dark:text-white">Bank</Text>
+          </View>
+          <View className="items-center" style={{ marginHorizontal: hs(50) }}>
+            <Transfer />
+            <Text className="dark:text-white">Transfer</Text>
+          </View>
+          <View className="items-center">
+            <Card />
+            <Text className="dark:text-white">Card</Text>
+          </View>
+        </View>
+      </Animated.View>
       <Text
         style={styles.historyheading}
         className="font-medium dark:text-white"
@@ -158,7 +215,7 @@ const Wallet = () => {
           showsVerticalScrollIndicator={false}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 const styles = StyleSheet.create({
@@ -203,6 +260,13 @@ const styles = StyleSheet.create({
     width: hs(47),
   },
   middelcard: {
+    marginHorizontal: hs(20),
+    borderRadius: ms(10),
+    marginTop: vs(50),
+    paddingBottom: vs(10),
+  },
+  backmiddelcard: {
+    position: 'absolute',
     marginHorizontal: hs(20),
     borderRadius: ms(10),
     marginTop: vs(50),

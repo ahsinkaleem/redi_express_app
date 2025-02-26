@@ -1,10 +1,18 @@
+/* eslint-disable import/order */
+import { useSignupMutation } from '@/store/api/user';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import FormikInput from '@src/components/globals/FormikInput';
 import { useRouter } from 'expo-router';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import { useState } from 'react';
-import { Image, KeyboardAvoidingView, StyleSheet, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import {
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import * as Yup from 'yup';
 import Colors from '../../../assets/CustomeColors/colors';
 import apple from '../../../assets/logos/apple-logo.png';
@@ -15,33 +23,64 @@ import TouchableOpacity from '../../../src/components/libraries/TouchableOpacity
 import { hs, ms, vs } from '../../../utils/design/design';
 
 const Index = () => {
+  const [signup] = useSignupMutation();
+
+  const handleSubmmits = async (values: FormValues) => {
+    console.log('clicked', values);
+    try {
+      const responce = await signup(values).unwrap();
+      Alert.alert('Success', responce.message);
+    } catch (err) {
+      Alert.alert(
+        'Error',
+        `Signup failed! ${
+          err.data?.err?.description || err.message || 'Unknown error'
+        }`,
+      );
+    }
+  };
   interface FormValues {
     name: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
     password: string;
-    isAccepted: boolean;
+    termsAccepted: boolean;
   }
-  const validationschema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    phone: Yup.string()
-      .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')
-      .required('Phone Number is required'),
-    email: Yup.string()
-      .email('Invalid email format')
-      .required('Email is required'),
-    password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
-    isAccepted: Yup.boolean().oneOf(
-      [true],
-      'You must accept the terms and conditions',
-    ),
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      termsAccepted: false,
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required('Name is required'),
+      phoneNumber: Yup.string()
+        .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')
+        .required('Phone Number is required'),
+      email: Yup.string()
+        .email('Invalid email format')
+        .required('Email is required'),
+      password: Yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .required('Password is required'),
+      termsAccepted: Yup.boolean().oneOf(
+        [true],
+        'You must accept the terms and conditions',
+      ),
+    }),
+    onSubmit: values => {
+      console.log('clicked1');
+      setTimeout(() => {
+        handleSubmmits(values);
+      }, 600);
+    },
   });
+
   const [passwordVisible, setpasswordVisible] = useState(true);
-  const onSubmit = (values: FormValues) => {
-    console.log('credentails', values);
-  };
+
   const router = useRouter();
   return (
     <View className="flex-1 bg-white dark:bg-black">
@@ -52,160 +91,129 @@ const Index = () => {
         complete the sign up process to get started
       </Text>
       <KeyboardAvoidingView>
-        <Formik
-          initialValues={{
-            name: '',
-            phone: '',
-            email: '',
-            password: '',
-            isAccepted: false,
-          }}
-          validationSchema={validationschema}
-          onSubmit={onSubmit}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            values,
-            touched,
-            errors,
-            setFieldValue,
-          }) => (
-            <>
-              <View style={styles.inputContainer}>
-                <Text
-                  className="text-customGray font-medium"
-                  style={styles.label}
-                >
-                  Full Name
-                </Text>
+        <View style={styles.inputContainer}>
+          <Text className="text-customGray font-medium" style={styles.label}>
+            Full Name
+          </Text>
+          <FormikInput
+            formik={formik}
+            name="name"
+            inputProps={{
+              placeholder: 'Abecd  fsgh',
+              returnKeyType: 'next',
+              placeholderTextColor: Colors.customlightGray,
+              onSubmitEditing: () => {},
+            }}
+          />
+          {/* {touched.name && error.name && (
+            <Text className="text-red-500">{Error.name}</Text>
+          )} */}
+        </View>
 
-                <TextInput
-                  className="dark:text-white"
-                  style={styles.input}
-                  onChangeText={handleChange('name')}
-                  onBlur={handleBlur('name')}
-                  placeholder="Abecd  fsgh"
-                  value={values.name}
-                  placeholderTextColor={Colors.customeGray}
-                />
-                {touched.name && errors.name && (
-                  <Text className="text-red-500">{errors.name}</Text>
-                )}
-              </View>
+        <View style={styles.inputContainer}>
+          <Text className="text-customGray font-medium" style={styles.label}>
+            Phone Number
+          </Text>
+          <FormikInput
+            formik={formik}
+            name="phoneNumber"
+            inputProps={{
+              placeholder: '00000000000',
+              returnKeyType: 'next',
+              placeholderTextColor: Colors.customlightGray,
+              onSubmitEditing: () => {},
+            }}
+          />
+          {/* {Touch.phnNumber && Error.phnNumber && (
+            <Text className="text-red-500">{Error.phone}</Text>
+          )} */}
+        </View>
 
-              <View style={styles.inputContainer}>
-                <Text
-                  className="text-customGray font-medium"
-                  style={styles.label}
-                >
-                  Phone Number
-                </Text>
+        <View style={styles.inputContainer}>
+          <Text className="text-customGray font-medium" style={styles.label}>
+            Email Address
+          </Text>
+          <FormikInput
+            formik={formik}
+            name="email"
+            inputProps={{
+              placeholder: '**********@mail.com',
+              returnKeyType: 'next',
+              placeholderTextColor: Colors.customlightGray,
+              onSubmitEditing: () => {},
+            }}
+          />
+          {/* {touched.email && errors.email && (
+            <Text className="text-red-500">{errors.email}</Text>
+          )} */}
+        </View>
 
-                <TextInput
-                  className="dark:text-white"
-                  style={styles.input}
-                  onChangeText={handleChange('phone')}
-                  onBlur={handleBlur('phone')}
-                  placeholder="00000000000"
-                  value={values.phone}
-                  placeholderTextColor={Colors.customeGray}
-                />
-                {touched.phone && errors.phone && (
-                  <Text className="text-red-500">{errors.phone}</Text>
-                )}
-              </View>
+        <View style={styles.inputContainer}>
+          <Text className="text-customGray font-medium" style={styles.label}>
+            Password
+          </Text>
+          <FormikInput
+            formik={formik}
+            name="password"
+            inputProps={{
+              placeholder: '************',
+              placeholderTextColor: Colors.customlightGray,
+              returnKeyType: 'next',
+              secureTextEntry: true,
+              onSubmitEditing: () => {},
+            }}
+          />
+          {/* {touched.password && errors.password && (
+            <Text className="text-red-500">{errors.password}</Text>
+          )} */}
+          <TouchableOpacity
+            onPress={() => setpasswordVisible(!passwordVisible)}
+            style={styles.eye}
+          >
+            <Ionicons
+              name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
+              size={24}
+              color="black"
+              className="dark:color-white "
+            />
+          </TouchableOpacity>
+        </View>
 
-              <View style={styles.inputContainer}>
-                <Text
-                  className="text-customGray font-medium"
-                  style={styles.label}
-                >
-                  Email Address
-                </Text>
-
-                <TextInput
-                  className="dark:text-white"
-                  style={styles.input}
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                  placeholder="**********@mail.com"
-                  value={values.email}
-                  placeholderTextColor={Colors.customeGray}
-                />
-                {touched.email && errors.email && (
-                  <Text className="text-red-500">{errors.email}</Text>
-                )}
-              </View>
-
-              <View style={styles.inputContainer}>
-                <Text
-                  className="text-customGray font-medium"
-                  style={styles.label}
-                >
-                  Password
-                </Text>
-
-                <TextInput
-                  className="dark:text-white"
-                  style={styles.input}
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                  placeholder="************"
-                  value={values.password}
-                  placeholderTextColor={Colors.customeGray}
-                  secureTextEntry={passwordVisible}
-                />
-                {touched.password && errors.password && (
-                  <Text className="text-red-500">{errors.password}</Text>
-                )}
-                <TouchableOpacity
-                  onPress={() => setpasswordVisible(!passwordVisible)}
-                  style={styles.eye}
-                >
-                  <Ionicons
-                    name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
-                    size={24}
-                    color="black"
-                    className="dark:color-white "
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.checkbox} className="flex-row ">
-                <TouchableOpacity
-                  onPress={() =>
-                    setFieldValue('isAccepted', !values.isAccepted)
-                  }
-                >
-                  <MaterialIcons
-                    name={
-                      values.isAccepted
-                        ? 'check-box'
-                        : 'check-box-outline-blank'
-                    }
-                    size={22}
-                    color={Colors.customBlue}
-                  />
-                </TouchableOpacity>
-                <View className="flex-row" style={styles.checktext}>
-                  <Text className="text-customGray text-center">
-                    By ticking this box you agree to our
-                    <Text className="text-customGolden">
-                      Terms and condition and privacy policy
-                    </Text>
-                  </Text>
-                </View>
-              </View>
-            </>
-          )}
-        </Formik>
+        <View style={styles.checkbox} className="flex-row ">
+          <TouchableOpacity
+            onPress={() =>
+              formik.setFieldValue(
+                'termsAccepted',
+                !formik.values.termsAccepted,
+              )
+            }
+          >
+            <MaterialIcons
+              name={
+                formik.values.termsAccepted
+                  ? 'check-box'
+                  : 'check-box-outline-blank'
+              }
+              size={22}
+              color={Colors.customBlue}
+            />
+          </TouchableOpacity>
+          <View className="flex-row" style={styles.checktext}>
+            <Text className="text-customGray text-center">
+              By ticking this box you agree to our
+              <Text className="text-customGolden">
+                Terms and condition and privacy policy
+              </Text>
+            </Text>
+          </View>
+        </View>
 
         <View className="items-center">
           <TouchableOpacity
-            onPress={() => router.push('/(auth)/signin')}
+            onPress={() => formik.handleSubmit()}
             className="bg-customBlue items-center text-center justify-center"
             style={styles.signup}
+            disabled={!formik.values.termsAccepted}
           >
             <Text className="text-white dark:text-white font-bold">
               Sign Up

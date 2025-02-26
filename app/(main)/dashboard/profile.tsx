@@ -14,6 +14,7 @@ import Card from 'assets/images/wallet-2.svg';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Image, StyleSheet, Switch, Text, View } from 'react-native';
+import Animated, { FadeInRight } from 'react-native-reanimated';
 import { hs, ms, vs } from '../../../utils/design/design';
 
 const Profile = () => {
@@ -22,7 +23,10 @@ const Profile = () => {
   const [darkmode, setdarkmode] = useState(false);
   const toggleSwitch = () => setdarkmode(prev => !prev);
   return (
-    <View className="flex-1 bg-white dark:bg-customBlack">
+    <Animated.View
+      className="flex-1 bg-white dark:bg-customBlack"
+      entering={FadeInRight.duration(1000)}
+    >
       <View className="flex-row" style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
           <Back style={styles.image} />
@@ -205,7 +209,7 @@ const Profile = () => {
           </View>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 export default Profile;
