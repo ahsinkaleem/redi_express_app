@@ -10,8 +10,13 @@ import Transfer from 'assets/images/transfer.svg';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
+  useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -33,6 +38,28 @@ const Wallet = () => {
       opacity: flip.value < 90 ? 1 : 0,
     };
   });
+  const x = useSharedValue(0);
+  const y = useSharedValue(0);
+  const onGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    { x: number; y: number }
+  >({
+    onStart: (_, ctx) => {
+      ctx.x = x.value;
+      ctx.y = y.value;
+    },
+    onActive: ({ translationX, translationY }, ctx) => {
+      x.value = ctx.x + translationX;
+      y.value = ctx.y + translationY;
+    },
+    onEnd: () => {
+      x.value = withSpring(0);
+      y.value = withSpring(0);
+    },
+  });
+  const mystyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: x.value }, { translateY: y.value }],
+  }));
   const backside = useAnimatedStyle(() => {
     return {
       transform: [{ perspective: 1000 }, { rotateX: `${flip.value + 180}deg` }],
@@ -114,10 +141,7 @@ const Wallet = () => {
           <Text className="font-bold dark:text-white" style={styles.name}>
             Ken Nwaeze
           </Text>
-          <View
-            className="flex-row  "
-            style={{ justifyContent: 'space-evenly' }}
-          >
+          <View className="flex-row" style={{ justifyContent: 'space-evenly' }}>
             <Text className="dark:text-white">Current balance: </Text>
             {amountVisible ? (
               <Text className="text-customBlue font-bold">******</Text>
@@ -155,11 +179,13 @@ const Wallet = () => {
         </View>
 
         <View className="flex-row ">
-          <View className="items-center">
-            {/* <Image source={bank} style={styles.logos} /> */}
-            <Bank />
-            <Text className="dark:text-white">Bank</Text>
-          </View>
+          <PanGestureHandler onGestureEvent={onGestureEvent}>
+            <Animated.View className="items-center" style={[mystyle]}>
+              {/* <Image source={bank} style={styles.logos} /> */}
+              <Bank />
+              <Text className="dark:text-white">Bank</Text>
+            </Animated.View>
+          </PanGestureHandler>
           <View className="items-center" style={{ marginHorizontal: hs(50) }}>
             <Transfer />
             <Text className="dark:text-white">Transfer</Text>

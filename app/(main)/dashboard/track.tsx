@@ -1,10 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+// eslint-disable-next-line import/order
+import { useDogsimageQuery } from '@/store/api/dogimages';
 // eslint-disable-next-line import/order
 import { useDummyDataQuery } from '@/store/api/dummy';
 import { FlashList } from '@shopify/flash-list';
 import { Text } from '@src/components/libraries';
-import Mappic from 'assets/images/magpic.svg';
 import World from 'assets/images/worldlogo.svg';
-import { StyleSheet, View } from 'react-native';
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import { hs, vs } from '../../../utils/design/design';
 
 interface typeofdata {
@@ -15,6 +19,13 @@ interface typeofdata {
 const track = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data } = useDummyDataQuery();
+  const { data: dogimage, refetch: refreshimage } = useDogsimageQuery();
+  console.log('image', dogimage);
+  useFocusEffect(
+    useCallback(() => {
+      refreshimage();
+    }, [refreshimage]),
+  );
   const renderItem = ({ item }: { item: typeofdata }) => (
     <View style={styles.textcontainer}>
       <Text>Number of Mobile: {item.id}</Text>
@@ -24,7 +35,12 @@ const track = () => {
 
   return (
     <View className="flex-1 bg-white dark:bg-customBlack">
-      <Mappic />
+      <Image
+        style={styles.image}
+        source={{
+          uri: dogimage?.message,
+        }}
+      />
       <View style={styles.textcontainer}>
         <Text style={styles.heading} className="font-bold">
           Tracking Number
@@ -53,5 +69,10 @@ const styles = StyleSheet.create({
   packingid: {
     marginTop: vs(20),
     marginBottom: vs(20),
+  },
+  image: {
+    width: hs(400), // Set width of the image
+    height: vs(300), // Set height of the image
+    borderRadius: 10,
   },
 });

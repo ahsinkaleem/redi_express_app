@@ -385,6 +385,7 @@ const Home = () => {
             <Pressable
               onPressIn={() => setcardPressed6(true)}
               onPressOut={() => setcardPressed6(false)}
+              onPress={() => router.push('/(main)/refer_and_earn')}
               style={[
                 styles.scroolcard,
                 cardpress6 ? styles.cardPressed : styles.cardDefault, // Toggle the styles
