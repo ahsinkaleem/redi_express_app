@@ -79,7 +79,7 @@ const Index = () => {
                 className="dark:text-white"
                 style={styles.input}
                 onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                onBlur={handleBlur}
                 placeholder="**********@mail.com"
                 value={values.email}
                 placeholderTextColor={Colors.customeGray}

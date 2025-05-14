@@ -31,6 +31,7 @@ type ListItem = {
 };
 
 const Wallet = () => {
+  const [isBlue, setIsBlue] = useState(false);
   const flip = useSharedValue(180);
   const frontside = useAnimatedStyle(() => {
     return {
@@ -191,7 +192,11 @@ const Wallet = () => {
             <Text className="dark:text-white">Transfer</Text>
           </View>
           <View className="items-center">
-            <Card />
+            <TouchableOpacity onPress={() => setIsBlue(!isBlue)}>
+              <Card
+                style={[isBlue ? { color: '#0000FF' } : { color: '#4FCE5D' }]}
+              />
+            </TouchableOpacity>
             <Text className="dark:text-white">Card</Text>
           </View>
         </View>
@@ -200,7 +205,7 @@ const Wallet = () => {
         style={[styles.backmiddelcard, [frontside]]}
         className="items-center bg-customlightGray dark:bg-customdarkCard"
       >
-        <TouchableOpacity onPress={handelflip}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Text
             className="font-bold dark:text-white"
             style={styles.midelheader}

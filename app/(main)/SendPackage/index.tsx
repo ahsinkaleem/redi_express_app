@@ -268,4 +268,5 @@ const styles = StyleSheet.create({
     width: hs(155),
     borderRadius: ms(10),
   },
+  input: {},
 });

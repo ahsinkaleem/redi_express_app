@@ -84,7 +84,7 @@ const index = () => {
       <Text className="font-bold text-customGray">Produts</Text>
       <Dropdown
         data={
-          catogorys?.map(category => ({
+          catogorys?.map((category: unknown) => ({
             label: category,
             value: category,
           })) || []
