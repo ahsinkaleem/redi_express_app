@@ -6,7 +6,7 @@ module.exports = withNativeWind(
     const {
       resolver: { sourceExts, assetExts },
       transformer,
-    } = await getDefaultConfig();
+    } = await getDefaultConfig(__dirname);
 
     return {
       transformer: {
